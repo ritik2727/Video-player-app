@@ -24,6 +24,10 @@ const VideoDetailsScreen = ({route}) => {
     return `${mins}:${secs}`;
   };
 
+  const handleLoad = (meta) => {
+    // Video has loaded, update progress state
+    setProgress({ currentTime: 0, seekableDuration: meta.duration });
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -36,6 +40,7 @@ const VideoDetailsScreen = ({route}) => {
           // source={{
           //   uri: video.url,
           // }}
+          onLoad={handleLoad}
           source={{ uri:video.url }}  // Use uri for dynamic paths // Updated line
           ref={ref}
           onProgress={x => {
